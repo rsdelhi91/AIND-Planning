@@ -1,3 +1,13 @@
+#-----------------------------------------------------------------------------------------------
+# This script is the solution for the third assignment (Part 1) of the Artificial Intelligence Nano degree
+# program offered by Udacity. It is used to specify the three Air Cargo problems as specified in the action
+# schema provided along with methods to validate its actions.
+# 
+# Author: Rahul Sharma
+# Email: sharma1@student.unimelb.edu.au
+#
+#-----------------------------------------------------------------------------------------------
+
 from aimacode.logic import PropKB
 from aimacode.planning import Action
 from aimacode.search import (
@@ -48,7 +58,7 @@ class AirCargoProblem(Problem):
             list of Action objects
         """
 
-        # TODO create concrete Action objects based on the domain action schema for: Load, Unload, and Fly
+        # Maintains concrete Action objects based on the domain action schema for: Load, Unload, and Fly
         # concrete actions definition: specific literal action that does not include variables as with the schema
         # for example, the action schema 'Load(c, p, a)' can represent the concrete actions 'Load(C1, P1, SFO)'
         # or 'Load(C2, P2, JFK)'.  The actions for the planning problem must be concrete because the problems in
@@ -129,7 +139,6 @@ class AirCargoProblem(Problem):
             e.g. 'FTTTFF'
         :return: list of Action objects
         """
-        # TODO implement
         possible_actions = []
         kb = PropKB()
         kb.tell(decode_state(state, self.state_map).pos_sentence())
@@ -154,7 +163,6 @@ class AirCargoProblem(Problem):
         :param action: Action applied
         :return: resulting state after action
         """
-        # TODO implement
         new_state = FluentState([], [])
         old_state = decode_state(state, self.state_map)
         for fluent in old_state.pos:
@@ -208,7 +216,6 @@ class AirCargoProblem(Problem):
         conditions by ignoring the preconditions required for an action to be
         executed.
         """
-        # TODO implement (see Russell-Norvig Ed-3 10.2.3  or Russell-Norvig Ed-2 11.2)
         count = 0
         kb = PropKB()
         kb.tell(decode_state(node.state, self.state_map).pos_sentence())
@@ -219,6 +226,9 @@ class AirCargoProblem(Problem):
 
 
 def air_cargo_p1() -> AirCargoProblem:
+    """This specifies the action schema for the first problem statement as outlined
+    in the spec.
+    """
     cargos = ['C1', 'C2']
     planes = ['P1', 'P2']
     airports = ['JFK', 'SFO']
@@ -244,6 +254,9 @@ def air_cargo_p1() -> AirCargoProblem:
 
 
 def air_cargo_p2() -> AirCargoProblem:
+    """This specifies the action schema for the second problem statement as outlined
+    in the spec.
+    """
     cargos = ['C1', 'C2', 'C3']
     planes = ['P1', 'P2', 'P3']
     airports = ['JFK', 'SFO', 'ATL']
@@ -270,6 +283,9 @@ def air_cargo_p2() -> AirCargoProblem:
 
 
 def air_cargo_p3() -> AirCargoProblem:
+    """This specifies the action schema for the third problem statement as outlined
+    in the spec.
+    """
     cargos = ['C1', 'C2', 'C3', 'C4']
     planes = ['P1', 'P2']
     airports = ['JFK', 'SFO', 'ATL', 'ORD']
